@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, ElementRef, Input, ViewChil
 import { Recipe } from '../recipe.model';
 import { DropdownDirective } from '../../shared/dropdown.directive';
 import { CommonModule } from '@angular/common';
+import { RecipeService } from '../../services/recipe.service';
 @Component({
   selector: 'app-recipe-detail',
   standalone: true,
@@ -12,9 +13,9 @@ import { CommonModule } from '@angular/common';
 export class RecipeDetailComponent {
 
 @Input() recipe!: Recipe;
-constructor(){
-  console.log(DropdownDirective)
+constructor(private _recipeService: RecipeService){}
+onAddToShoppingList(){
+this._recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
 }
-
 
 }
